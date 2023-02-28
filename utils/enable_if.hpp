@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_constructor.tpp                             :+:      :+:    :+:   */
+/*   enable_if.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarra <mlarra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 16:19:47 by mlarra            #+#    #+#             */
-/*   Updated: 2023/02/28 11:47:15 by mlarra           ###   ########.fr       */
+/*   Created: 2023/02/28 19:29:24 by mlarra            #+#    #+#             */
+/*   Updated: 2023/02/28 19:33:59 by mlarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef VECTOR_HPP
+#ifndef ENABLE_IF_HPP
+# define ENABLE_IF_HPP
 
 namespace ft
 {
-	template <class T, class Allocator>
-	vector<T, Allocator>::vector(): _base() {allocateZero(0);}
-	
-	template <class T, class Allocator>
-	vector<T, Allocator>::vector( const allocator_type& alloc ): _base(alloc)
-	{
-		allocateZero(0);
-	}
+	template <bool B, class T = void>
+	struct enable_if {};
+
+	template <class T>
+	struct enable_if<true, T> { typedef T type;};
 } // namespace ft
+
 
 #endif

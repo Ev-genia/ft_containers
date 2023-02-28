@@ -6,7 +6,7 @@
 /*   By: mlarra <mlarra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:20:04 by mlarra            #+#    #+#             */
-/*   Updated: 2023/02/27 21:40:43 by mlarra           ###   ########.fr       */
+/*   Updated: 2023/02/28 21:56:42 by mlarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 
 # include <iostream>
 # include <memory>
-// # include "iterators/vector_iterator.hpp"
-
 # include "../iterators/iterator.hpp"
+# include "../utils/utils.hpp"
 
 namespace ft
 {
@@ -52,62 +51,165 @@ namespace ft
 		typedef typename allocator_type::difference_type	difference_type;
 		typedef typename allocator_type::size_type			size_type;
 
-		typedef ft::random
+		typedef ft::random_access_iterator<value_type, difference_type,
+			pointer, reference, pointer, reference>	iterator;
+		typedef ft::random_access_iterator<value_type, difference_type,
+			const_pointer, const_reference, pointer, reference>	const_iterator;
+		typedef ft::reverse_iterator<iterator>	reverse_iterator;
+		typedef ft::reverse_iterator<const_iterator>	const_reverse_iterator;
 
-		// typedef ft::vector_iterator<value_type>				iterator;
-		// typedef ft::vector_iterator<const value_type>		const_iterator;
-		// typedef ft::reverse_iterator<iterator>				reverse_iterator;
-		// typedef ft::reverse_iterator<const_iterator>		const_reverse_iterator;
-
+		// *Constructors
 		vector();
-/*
-		// *Member functions*
-		// constructor
-		explicit vector(const allocator_type &alloc = allocator_type()): _array(0), _size(0), _capacity(0), _allocator(alloc) {}
-		// destructor
-		~vector()
-		{
-			clear();
-			if (_capacity)
-				_allocator.deallocate(_array, _capacity);
-		}
-		// operator=
-		vector& operator=( const vector &other)
-		{
-			if (this != other)
-			{
-				clear();
-				_allocator.deallocate(_array, _capacity);
-				_size = other.size();
-				_capacity = other.capacity();
-				_array = _allocator.allocate(_capacity);
-				for (size_t i = 0; i < other._size; i++)
-					allocator.construct(_array + i, other._array[i]);
-			}
-			return (*this);
-		}
-		// assign
-		void assign(size_type count, const T& value)
-		{
-			T	TVal = value;
 
-			erase(begin(), end());
-			insert(begin(), count, TVal);
-		}
+		explicit vector( const allocator_type& alloc );
+
+		explicit vector( size_type count );
+
+		vector(size_type count, const T &val);
+
+		vector( size_type count, const T& val, const allocator_type& alloc );
+
+		vector( const vector& other );
+
+		template< class InputIt >
+		vector( InputIt first, InputIt last );
+
+		template< class InputIt >
+		vector( InputIt first, InputIt last, const allocator_type& alloc );
+
+		// *Destructor
+		~vector();
+
+		// *operator=
+		vector& operator=( const vector& other );
+
+		// *assign
+		void assign( size_type count, const T& value );
+		
+		template< class InputIt >
+		void assign( InputIt first, InputIt last );
+
+		// *get_allocator
+		allocator_type get_allocator() const;
+
+		// *Element access
 
 
-		// *Modifiers*
-		void clear()
-		{
-			if (_array)
-			{
-				for (size_t i = 0; i < _size; i++)
-					_allocator.destroy(_array + i);
-			}
-			_size = 0;
-		}
-*/
+		// *Iterators
+		iterator				begin();
+		const_iterator			begin() const;
+		iterator				end();
+		const_iterator			end() const;
+		reverse_iterator		rbegin();
+		const_reverse_iterator	rbegin() const;
+		reverse_iterator		rend();
+		const_reverse_iterator	rend() const;
+
+		// *Capacity
+		bool		empty() const; //true if the container is empty, false otherwise
+		size_type	size() const;
+		size_type	max_size() const;
+		void		reserve( size_type new_cap );
+		size_type	capacity() const;
+
+		// *Modifiers
+		void	clear();
+		iterator	insert( iterator pos, const T& value );
+
+		void	insert( iterator pos, size_type count, const T& value );
+
+		template< class InputIt >
+		void	insert( iterator pos, InputIt first, InputIt last );
+
+		iterator	erase( iterator pos );
+		iterator	erase( iterator first, iterator last );
+
+		void	push_back( const T& value );
+
+		void	pop_back();
+
+		void	resize( size_type count );
+		void	resize( size_type count, T value );
+
+		void	swap( vector& other );
+
+	protected:
+		bool	AllocateZero(size_type);
+
+		pointer	CallConstructor(pointer, size_type, const T &);
+
+		template <class InputIt>
+		pointer	ItCopy(InputIt first, InputIt last, pointer q);
+
+		template <class InputIt>
+		void	Construct(InputIt first, InputIt last, Int_iterator_tag);
+
+		template <class InputIt>
+		void	Construct(InputIt first, InputIt last, input_iterator_tag);
+
+		template <class InputIt>
+		void	Construct2(InputIt first, InputIt last, typename ft::enable_if<ft::is_integral<InputIt>::value, InputIt>::type * = nullptr);
+		template <class InputIt>
+		void	Construct2(InputIt first, InputIt last, typename ft::enable_if<!ft::is_integral<InputIt>::value, InputIt>::type * = nullptr);
+
+		void	Destroy(pointer first, pointer last);
+
+		void	Clear();
+
+		template <class InputIt>
+		void	Insert(iterator p, InputIt first, InputIt last, Int_iterator_tag);
+
+		template <class InputIt>
+		void	Insert(iterator p, InputIt first, InputIt last, input_iterator_tag);
+
+		template <class InputIt>
+		void	Insert(iterator p, InputIt first, InputIt last, forward_iterator_tag);
+
+		template <class InputIt>
+		void	Insert2(iterator p, InputIt first, typename ft::enable_if<ft::is_integral<InputIt>::value, InputIt>::type * = nullptr);
+
+		template <class InputIt>
+		void	Insert2(iterator p, InputIt first, typename ft::enable_if<!ft::is_integral<InputIt>::value, InputIt>::type * = nullptr);
+
+		template <class InputIt>
+		void	Assign(InputIt first, InputIt last, Int_iterator_tag);
+
+		template <class InputIt>
+		void	Assign(InputIt first, InputIt last, input_iterator_tag);
+
+		pointer First, Last, End;
 	};
+
+	// *Non-member functions
+	template< class T, class allocator_type > inline
+	bool operator==( const std::vector<T, allocator_type>& lhs,
+			const std::vector<T, allocator_type>& rhs )
+	{}
+
+	template< class T, class allocator_type >
+	bool operator!=( const std::vector<T, allocator_type>& lhs,
+			const std::vector<T, allocator_type>& rhs )
+	{}
+
+	template< class T, class allocator_type >
+	bool operator<( const std::vector<T, allocator_type>& lhs,
+			const std::vector<T, allocator_type>& rhs )
+	{}
+
+	template< class T, class allocator_type >
+	bool operator<=( const std::vector<T, allocator_type>& lhs,
+			const std::vector<T, allocator_type>& rhs )
+	{}
+
+	template< class T, class allocator_type >
+	bool operator>( const std::vector<T, allocator_type>& lhs,
+			const std::vector<T, allocator_type>& rhs )
+	{}
+
+	template< class T, class allocator_type >
+	bool operator>=( const std::vector<T, allocator_type>& lhs,
+			const std::vector<T, allocator_type>& rhs )
+	{}
 } // namespace ft
 
 # include "vector_constructor.tpp"

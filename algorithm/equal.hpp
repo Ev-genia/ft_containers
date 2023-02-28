@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_constructor.tpp                             :+:      :+:    :+:   */
+/*   equal.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarra <mlarra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 16:19:47 by mlarra            #+#    #+#             */
-/*   Updated: 2023/02/28 11:47:15 by mlarra           ###   ########.fr       */
+/*   Created: 2023/02/28 22:37:22 by mlarra            #+#    #+#             */
+/*   Updated: 2023/02/28 23:52:33 by mlarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef VECTOR_HPP
+#ifndef EQUAL_HPP
+# define EQUAL_HPP
+
+# include "mismatch.hpp"
 
 namespace ft
 {
-	template <class T, class Allocator>
-	vector<T, Allocator>::vector(): _base() {allocateZero(0);}
-	
-	template <class T, class Allocator>
-	vector<T, Allocator>::vector( const allocator_type& alloc ): _base(alloc)
+	template <class InputIt1, class InputIt2> inline
+	bool	equal(InputIt1 first, InputIt1 last, InputIt2 x)
 	{
-		allocateZero(0);
+		return (ft::mismatch(first, last, x).first == last);
+	}
+
+	template <class InputIt1, class InputIt2, class Pr> inline
+	bool	equal(InputIt1 first, InputIt1 last, InputIt2 x, Pr p)
+	{
+		return (ft::mismatch(first, last, x, p).first == last);
 	}
 } // namespace ft
 

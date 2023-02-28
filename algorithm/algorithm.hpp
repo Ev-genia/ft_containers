@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_constructor.tpp                             :+:      :+:    :+:   */
+/*   algorithm.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarra <mlarra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 16:19:47 by mlarra            #+#    #+#             */
-/*   Updated: 2023/02/28 11:47:15 by mlarra           ###   ########.fr       */
+/*   Created: 2023/02/28 21:57:51 by mlarra            #+#    #+#             */
+/*   Updated: 2023/02/28 23:54:50 by mlarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef VECTOR_HPP
+#ifndef ALGORITHM_HPP
+# define ALGORITHM_HPP
 
-namespace ft
-{
-	template <class T, class Allocator>
-	vector<T, Allocator>::vector(): _base() {allocateZero(0);}
-	
-	template <class T, class Allocator>
-	vector<T, Allocator>::vector( const allocator_type& alloc ): _base(alloc)
-	{
-		allocateZero(0);
-	}
-} // namespace ft
+# include "equal.hpp"
+# include "mismatch.hpp"
 
 #endif
