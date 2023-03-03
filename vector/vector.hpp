@@ -6,7 +6,7 @@
 /*   By: mlarra <mlarra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:20:04 by mlarra            #+#    #+#             */
-/*   Updated: 2023/02/28 21:56:42 by mlarra           ###   ########.fr       */
+/*   Updated: 2023/03/01 13:50:04 by mlarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <memory>
+# include "../algorithm/algorithm.hpp"
 # include "../iterators/iterator.hpp"
 # include "../utils/utils.hpp"
 
@@ -93,7 +94,15 @@ namespace ft
 		allocator_type get_allocator() const;
 
 		// *Element access
-
+		reference at( size_type pos );
+		const_reference at( size_type pos ) const;
+		reference operator[]( size_type pos );
+		const_reference operator[]( size_type pos ) const;
+		reference front();
+		const_reference front() const;
+		reference back();
+		const_reference back() const;
+		pointer data();
 
 		// *Iterators
 		iterator				begin();
@@ -139,7 +148,7 @@ namespace ft
 		pointer	CallConstructor(pointer, size_type, const T &);
 
 		template <class InputIt>
-		pointer	ItCopy(InputIt first, InputIt last, pointer q);
+		pointer	ItCopy(InputIt first, InputIt last, pointer ptr);
 
 		template <class InputIt>
 		void	Construct(InputIt first, InputIt last, Int_iterator_tag);
@@ -184,34 +193,55 @@ namespace ft
 	template< class T, class allocator_type > inline
 	bool operator==( const std::vector<T, allocator_type>& lhs,
 			const std::vector<T, allocator_type>& rhs )
-	{}
+	{
+		return (lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin()));
+	}
 
 	template< class T, class allocator_type >
 	bool operator!=( const std::vector<T, allocator_type>& lhs,
 			const std::vector<T, allocator_type>& rhs )
-	{}
+	{
+		return (!(lhs == rhs));
+	}
 
 	template< class T, class allocator_type >
 	bool operator<( const std::vector<T, allocator_type>& lhs,
 			const std::vector<T, allocator_type>& rhs )
-	{}
+	{
+		return (ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end()));
+	}
 
 	template< class T, class allocator_type >
 	bool operator<=( const std::vector<T, allocator_type>& lhs,
 			const std::vector<T, allocator_type>& rhs )
-	{}
+	{
+		return (!(rhs < lhs));
+	}
 
 	template< class T, class allocator_type >
 	bool operator>( const std::vector<T, allocator_type>& lhs,
 			const std::vector<T, allocator_type>& rhs )
-	{}
+	{
+		return (rhs < lhs);
+	}
 
 	template< class T, class allocator_type >
 	bool operator>=( const std::vector<T, allocator_type>& lhs,
 			const std::vector<T, allocator_type>& rhs )
-	{}
+	{
+		return (!(lhs < rhs));
+	}
 } // namespace ft
 
 # include "vector_constructor.tpp"
+# include "vector_destructor.tpp"
+# include "vector_overload_operator.tpp"
+# include "vector_assign.tpp"
+# include "vector_get_allocator.tpp"
+# include "vector_element_access.tpp"
+# include "vector_iterators.tpp"
+# include "vector_capacity.tpp"
+# include "vector_modifires.tpp"
+# include "vector_protected.tpp"
 
 #endif

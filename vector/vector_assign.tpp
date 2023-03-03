@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.hpp                                      :+:      :+:    :+:   */
+/*   vector_assign.tpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarra <mlarra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/28 21:57:51 by mlarra            #+#    #+#             */
-/*   Updated: 2023/03/01 12:43:53 by mlarra           ###   ########.fr       */
+/*   Created: 2023/03/01 13:15:24 by mlarra            #+#    #+#             */
+/*   Updated: 2023/03/01 13:15:52 by mlarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALGORITHM_HPP
-# define ALGORITHM_HPP
+#ifdef VECTOR_HPP
 
-# include "equal.hpp"
-# include "lexicographical_compare.hpp"
-# include "mismatch.hpp"
+namespace ft
+{
+	
+} // namespace ft
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mlarra <mlarra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:19:47 by mlarra            #+#    #+#             */
-/*   Updated: 2023/02/28 11:47:15 by mlarra           ###   ########.fr       */
+/*   Updated: 2023/03/01 13:05:01 by mlarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ namespace ft
 	template <class T, class Allocator>
 	vector<T, Allocator>::vector( const allocator_type& alloc ): _base(alloc)
 	{
-		allocateZero(0);
+		AllocateZero(0);
 	}
 } // namespace ft
 
