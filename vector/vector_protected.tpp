@@ -6,7 +6,7 @@
 /*   By: mlarra <mlarra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 13:30:04 by mlarra            #+#    #+#             */
-/*   Updated: 2023/03/03 09:16:04 by mlarra           ###   ########.fr       */
+/*   Updated: 2023/03/09 17:57:01 by mlarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,8 @@ namespace ft
 	{
 		size_type	m = 0;
 
-		ft::
+		ft::Distance(first, last, m);
+		size_type	n = capacity()
 	}
 } // namespace ft
 

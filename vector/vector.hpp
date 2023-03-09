@@ -6,7 +6,7 @@
 /*   By: mlarra <mlarra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:20:04 by mlarra            #+#    #+#             */
-/*   Updated: 2023/03/01 13:50:04 by mlarra           ###   ########.fr       */
+/*   Updated: 2023/03/05 11:36:23 by mlarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,25 +122,25 @@ namespace ft
 		size_type	capacity() const;
 
 		// *Modifiers
-		void	clear();
+		void		clear();
 		iterator	insert( iterator pos, const T& value );
 
-		void	insert( iterator pos, size_type count, const T& value );
+		void		insert( iterator pos, size_type count, const T& value );
 
 		template< class InputIt >
-		void	insert( iterator pos, InputIt first, InputIt last );
+		void		insert( iterator pos, InputIt first, InputIt last );
 
 		iterator	erase( iterator pos );
 		iterator	erase( iterator first, iterator last );
 
-		void	push_back( const T& value );
+		void		push_back( const T& value );
 
-		void	pop_back();
+		void		pop_back();
 
-		void	resize( size_type count );
-		void	resize( size_type count, T value );
+		void		resize( size_type count );
+		void		resize( size_type count, T value );
 
-		void	swap( vector& other );
+		void		swap( vector& other );
 
 	protected:
 		bool	AllocateZero(size_type);

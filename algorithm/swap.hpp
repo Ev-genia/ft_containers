@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.hpp                                      :+:      :+:    :+:   */
+/*   swap.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlarra <mlarra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/28 21:57:51 by mlarra            #+#    #+#             */
-/*   Updated: 2023/03/09 17:56:03 by mlarra           ###   ########.fr       */
+/*   Created: 2023/03/09 16:29:06 by mlarra            #+#    #+#             */
+/*   Updated: 2023/03/09 16:32:11 by mlarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALGORITHM_HPP
-# define ALGORITHM_HPP
+#ifndef SWAP_HPP
+# define SWAP_HPP
 
-# include "copy.hpp"
-# include "equal.hpp"
-# include "fill.hpp"
-# include "lexicographical_compare.hpp"
-# include "mismatch.hpp"
-# include "swap.hpp"
+namespace ft
+{
+	template <class T> inline
+	void	swap(T &first, T &second)
+	{
+		T	tmp = first;
+		first = second;
+		second = tmp;
+	}
+} // namespace ft
 
 #endif
