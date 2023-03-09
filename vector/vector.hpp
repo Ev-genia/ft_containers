@@ -6,7 +6,7 @@
 /*   By: mlarra <mlarra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:20:04 by mlarra            #+#    #+#             */
-/*   Updated: 2023/03/05 11:36:23 by mlarra           ###   ########.fr       */
+/*   Updated: 2023/03/09 18:00:39 by mlarra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,15 @@ namespace ft
 		allocator_type get_allocator() const;
 
 		// *Element access
-		reference at( size_type pos );
-		const_reference at( size_type pos ) const;
-		reference operator[]( size_type pos );
-		const_reference operator[]( size_type pos ) const;
-		reference front();
-		const_reference front() const;
-		reference back();
-		const_reference back() const;
-		pointer data();
+		reference		at( size_type pos );
+		const_reference	at( size_type pos ) const;
+		reference		operator[]( size_type pos );
+		const_reference	operator[]( size_type pos ) const;
+		reference		front();
+		const_reference	front() const;
+		reference		back();
+		const_reference	back() const;
+		pointer			data();
 
 		// *Iterators
 		iterator				begin();
